@@ -13,6 +13,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         //
     }
+    public const HOME = '/dashboard';
 
     /**
      * Bootstrap services.

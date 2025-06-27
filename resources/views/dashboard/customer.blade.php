@@ -12,12 +12,12 @@
 
         <div class="row mt-4">
             <div class="col-md-6 mb-2">
-                <a href="{{ url('/pelanggan/create') }}" class="btn btn-lg btn-block" style="background-color:#F65314; color:white;">
+                <a href="{{ route('pelanggan.create') }}" class="btn btn-lg btn-block" style="background-color:#F65314; color:white;">
                     <i class="fa fa-edit"></i> Daftar Baru
                 </a>
             </div>
             <div class="col-md-6 mb-2">
-                <a href="{{ url('/laundry/create') }}" class="btn btn-lg btn-block" style="background-color:#7CBB00; color:white;">
+                <a href="" class="btn btn-lg btn-block" style="background-color:#7CBB00; color:white;">
                     <i class="fa fa-save"></i> Pesan Laundry
                 </a>
             </div>
