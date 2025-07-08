@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body, html {
             margin: 0;
             padding: 0;
@@ -20,24 +23,102 @@
         .wrapper {
             display: flex;
             min-height: 100vh;
+            flex-direction: column;
         }
+
+        /* ===== Sidebar Styles ===== */
         .sidebar {
             width: 250px;
             background: #33AADD;
             min-height: 100vh;
             padding: 20px;
             color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: 0.3s ease;
         }
-        .sidebar a {
-            color: #fff;
-            display: block;
-            margin: 15px 0;
+
+        .sidebar.collapsed {
+            width: 80px;
+            text-align: center;
         }
+
         .sidebar img {
             width: 150px;
             margin: 20px auto;
             display: block;
+            transition: 0.3s;
         }
+
+        .sidebar.collapsed img {
+            width: 50px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+            transition: 0.3s;
+        }
+
+        .sidebar.collapsed a {
+            justify-content: center;
+        }
+
+        .sidebar p,
+        .sidebar a span {
+            transition: 0.3s;
+        }
+
+        .sidebar.collapsed p,
+        .sidebar.collapsed a span {
+            display: none;
+        }
+
+        .main {
+            margin-left: 250px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main.shifted {
+            margin-left: 80px;
+        }
+
+        /* ===== Topbar ===== */
+        .topbar {
+            background: #eee;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .topbar i {
+            font-size: 22px;
+            cursor: pointer;
+        }
+        .topbar .dropdown {
+            position: relative;
+        }
+        .topbar .dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            min-width: 120px;
+            z-index: 1000;
+        }
+
         .content {
             flex: 1;
             padding: 40px;
@@ -46,25 +127,56 @@
     </style>
 </head>
 <body>
-  <div class="wrapper">
+<div class="wrapper">
     {{-- Sidebar --}}
-    <div class="sidebar">
-      <div class="text-center">
-        <img src="{{ asset('template/img/logo.jpg') }}" alt="Laundrapp Logo">
-      </div>
-      <p>Selamat Datang, <br><strong>Pelanggan</strong></p>
-      <a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a>
-      <a href="/pelanggan/create"><i class="fa fa-edit"></i> Daftar Baru</a>
-      <a href="/laundry/create"><i class="fa fa-save"></i> Pesan Laundry</a>
-      <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit" class="btn btn-danger">Logout</button>
-    </div>
+    <div id="sidebar" class="sidebar">
+        <div class="text-center">
+            <img src="{{ asset('template/img/logo.jpg') }}" alt="Laundrapp Logo">
+        </div>
+        <p>Selamat Datang, <br><strong>Pelanggan</strong></p>
+        <a href="/dashboard"><i class="fa fa-home"></i> <span>Dashboard</span></a>
+        <a href="/pelanggan/create"><i class="fa fa-edit"></i> <span>Daftar Baru</span></a>
+        <a href="/pesan-laundry"><i class="fa fa-save"></i> <span>Pesan Laundry</span></a>
+        <a href="{{ route('order.lacak-form') }}"><i class="fa fa-search"></i> <span>Lacak Pesanan</span></a>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn btn-danger mt-3 w-100">Logout</button>
+        </form>
+    </div> 
 
-    {{-- Konten --}}
-    <div class="content">
-      @yield('content')
+    {{-- Main Content --}}
+    <div id="mainContent" class="main">
+        {{-- Topbar --}}
+        <div class="topbar">
+            <i class="fas fa-bars" id="toggleSidebar"></i>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-dark dropdown-toggle" data-toggle="dropdown">
+                    <i class="fas fa-user-circle fa-2x text-secondary mr-2"></i>
+                    <span>Pelanggan</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow">
+                    <a class="dropdown-item" href="{{ route('login') }}">
+                        <i class="fas fa-sign-in-alt mr-2"></i> Log In
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            @yield('content')
+        </div>
     </div>
-  </div>
+</div>
+
+{{-- JS --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Toggle sidebar
+    $('#toggleSidebar').on('click', function () {
+        $('#sidebar').toggleClass('collapsed');
+        $('#mainContent').toggleClass('shifted');
+    });
+</script>
 </body>
 </html>
