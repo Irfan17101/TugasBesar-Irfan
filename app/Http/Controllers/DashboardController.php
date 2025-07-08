@@ -11,7 +11,7 @@ class DashboardController extends Controller
         $role = auth()->user()->role;
 
         if ($role === 'admin') {
-            return view('dashboard.admin');
+            return view('dashboardAdmin.admin');
         } elseif ($role === 'pelanggan') {
             return view('dashboard.customer');
         } else {
@@ -21,6 +21,6 @@ class DashboardController extends Controller
 
     public function create()
     {
-        return view('dashboard.create'); // memastikan view ini dipanggil
+        return view('dashboard.create'); 
     }
 }
