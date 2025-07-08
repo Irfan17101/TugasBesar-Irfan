@@ -93,7 +93,7 @@
                     <div class="col-md-6 mb-2">
                         <div class="bg-light mb-4">
                             <div class="position-relative">
-                                <img class="img-fluid w-100" src="img/blog-1.jpg" alt="">
+                                <img class="img-fluid w-100" src="public/template/logo" alt="">
                                 <a href="" class="position-absolute w-100 h-100 d-flex flex-column align-items-center justify-content-center   text-decoration-none p-4" style="top: 0; left: 0; background: rgba(0, 0, 0, .4);">
                                     <h4 class="text-center text-white font-weight-medium mb-3">Dolor site amet clita kasd sanct ipsum</h4>
                                     <div class="d-flex text-light">
