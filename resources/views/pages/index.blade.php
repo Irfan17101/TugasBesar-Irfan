@@ -73,7 +73,7 @@
             <div class="p-3" style="max-width: 900px;">
                 <h4 class="text-white text-uppercase mb-md-3">Laundry & Dry Cleaning</h4>
                 <h1 class="display-3 text-white mb-md-4">Best For Laundry Services</h1>
-                <a href="{{ url('/services') }}" class="btn btn-primary py-md-3 px-md-5 mt-2">Learn More</a>
+                
             </div>
         </div>
     </div>
@@ -115,7 +115,7 @@ T
                         <i class="fa fa-2x fa-map-marker-alt text-white m-0 mr-3"></i>
                         <div class="d-flex flex-column">
                             <h5 class="text-white font-weight-medium">Our Location</h5>
-                            <p class="m-0 text-white">123 Street, New York, USA</p>
+                            <p class="m-0 text-white">Bandung Jawa Barat</p>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@ T
                         <i class="fa fa-2x fa-envelope text-white m-0 mr-3"></i>
                         <div class="d-flex flex-column">
                             <h5 class="text-white font-weight-medium">Email Us</h5>
-                            <p class="m-0 text-white">info@example.com</p>
+                            <p class="m-0 text-white">Laundryfy@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@ T
                         <i class="fa fa-2x fa-phone-alt text-white m-0 mr-3"></i>
                         <div class="d-flex flex-column">
                             <h5 class="text-white font-weight-medium">Call Us</h5>
-                            <p class="m-0 text-white">+012 345 6789</p>
+                            <p class="m-0 text-white">08989837450</p>
                         </div>
                     </div>
                 </div>
@@ -153,12 +153,12 @@ T
             </div>
             <div class="col-lg-7 mt-5 mt-lg-0 pl-lg-5">
                 <h6 class="text-secondary text-uppercase font-weight-medium mb-3">Learn About Us</h6>
-                <h1 class="mb-4">We Are Quality Laundry Provider In Your City</h1>
+                <h1 class="mb-4">Penyedia Layanan Laundry Berkualitas di Kota Anda</h1>
                 <h5 class="font-weight-medium font-italic mb-4">
-                    Clita sit et ipsum sed. Volup duo sea dolor rebum ea rebum kasd stet. Dolor at duo dolor sit stet.
+                    Kami hadir untuk memberikan layanan laundry terbaik dengan sentuhan profesional dan hasil yang memuaskan. Kami memahami betapa berharganya waktu Anda—karena itu, kami menggabungkan kecepatan, kualitas, dan pelayanan terbaik dalam setiap proses pencucian.
                 </h5>
                 <p class="mb-2">
-                    Invidunt lorem justo sanctus clita. Erat lorem labore ea, justo dolor lorem ipsum ut sed eos, ipsum et dolor kasd sit ea justo. Erat justo sed sed diam. Ea et erat ut sed diam sea ipsum est dolor.
+                    Dari pakaian sehari-hari hingga item khusus, semua dicuci dengan standar kebersihan tinggi dan perhatian pada setiap detail.
                 </p>
 
                 <!-- Fitur -->
@@ -166,25 +166,33 @@ T
                     <div class="col-sm-6 pt-3">
                         <div class="d-flex align-items-center">
                             <i class="fa fa-check text-primary mr-2"></i>
-                            <p class="text-secondary font-weight-medium m-0">Quality Laundry Service</p>
+                            <p class="text-secondary font-weight-medium m-0">
+                                <i class="fas fa-soap mr-2"></i> Layanan Laundry Berkualitas
+                              </p>
                         </div>
                     </div>
                     <div class="col-sm-6 pt-3">
                         <div class="d-flex align-items-center">
                             <i class="fa fa-check text-primary mr-2"></i>
-                            <p class="text-secondary font-weight-medium m-0">Express Fast Delivery</p>
+                            <p class="text-secondary font-weight-medium m-0">
+                                <i class="fas fa-shipping-fast mr-2"></i> Pengantaran Cepat & Tepat Waktu
+                              </p>
                         </div>
                     </div>
                     <div class="col-sm-6 pt-3">
                         <div class="d-flex align-items-center">
                             <i class="fa fa-check text-primary mr-2"></i>
-                            <p class="text-secondary font-weight-medium m-0">Highly Professional Staff</p>
+                            <p class="text-secondary font-weight-medium m-0">
+                                <i class="fas fa-user-tie mr-2"></i> Staf Profesional & Berpengalaman
+                              </p>
                         </div>
                     </div>
                     <div class="col-sm-6 pt-3">
                         <div class="d-flex align-items-center">
                             <i class="fa fa-check text-primary mr-2"></i>
-                            <p class="text-secondary font-weight-medium m-0">100% Satisfaction Guarantee</p>
+                            <p class="text-secondary font-weight-medium m-0">
+                                <i class="fas fa-thumbs-up mr-2"></i> Garansi Kepuasan 100%
+                              </p>
                             </div>
                         </div>
                     </div>
