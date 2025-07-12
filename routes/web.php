@@ -1,93 +1,67 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PelangganController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\userController;
+use App\Http\Controllers\PaymentController;
 
 
-// =========================
-// Halaman Utama
-// =========================
+
 Route::get('/', function () {
     return view('pages.index'); 
-});
+})->name('home');
 
-// =========================
+Route::post('/order' , [OrderController::class,'store'])->name('order.store');
+
 // Halaman Statis
-// =========================
-Route::view('/about', 'pages.about');
-Route::view('/contact', 'pages.contact');
-Route::view('/services', 'pages.services');
-Route::view('/pricing', 'pages.pricing');
-Route::view('/blog', 'pages.blog');
-Route::view('/blog-detail', 'pages.blog-detail');
-
-// =========================
-// Autentikasi
-// =========================
-Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-
-    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-    Route::post('/register', [RegisteredUserController::class, 'store']);
-});
-
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('logout');
-
-// =========================
-// Dashboard
-// =========================
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
-// =========================
-// Profile (User Setting)
-// =========================
+Route::view('/about', 'pages.about')->name('about');
+Route::view('/contact', 'pages.contact')->name('contact');
+Route::view('/services', 'pages.services')->name('services');
+Route::view('/pricing', 'pages.pricing')->name('pricing');
+Route::view('/blog', 'pages.blog')->name('blog');
+Route::view('/blog-detail', 'pages.blog-detail')->name('blog.detail');
+require __DIR__.'/auth.php';
 Route::middleware('auth')->group(function () {
+    
+    // Route Profil Pengguna
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Route test login (opsional)
-    Route::get('/test', function () {
-        return 'Login berhasil!';
-    });
+    // Dashboard
+    Route::get('/dashboard', function() {
+        if (auth()->user()->role == 'admin') {
+            return view('dashboardAdmin.admin');
+        }
+        return redirect()->route('laundry.lacak');
+    })->name('dashboard');
 
-    // =========================
-    // Pelanggan & Laundry
-    // =========================
-    Route::resource('pelanggan', PelangganController::class);
-    Route::get('/pesan-laundry', [PelangganController::class, 'order'])->name('pelanggan.order');
-    Route::post('/pesan-laundry', [PelangganController::class, 'processOrder'])->name('pelanggan.process-order');
+    // Rute Khusus Pelanggan
+    Route::get('/pesan-laundry', [PelangganController::class, 'create'])->name('laundry.pesan');
+    Route::get('/lacak-pesanan', [PelangganController::class, 'lacakPesanan'])->name('laundry.lacak');
+    Route::get('/payment/{order}', [PaymentController::class, 'create'])->name('payment.create');
+
+    // Rute pembayaran untuk halaman sukses 
+    Route::get('/payment/success', function () {
+        return '<h1>Pembayaran Berhasil!</h1>'; 
+    })->name('payment.success');
 });
 
-// =========================
-// Include Auth Routes
-// =========================
-require __DIR__.'/auth.php';
 
-// pesan laundry
-Route::middleware('auth')->group(function () {
-    Route::get('/pesan-laundry', [OrderController::class, 'order'])->name('order.form');
-    Route::post('/pesan-laundry', [OrderController::class, 'store'])->name('order.store');
-});
 
-Route::get('/lacak-pesanan', [OrderController::class, 'showLacakForm'])->name('order.lacak-form');
-Route::post('/lacak-pesanan', [OrderController::class, 'lacakPesanan'])->name('order.lacak');
-
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-    Route::get('/kelola-pengguna', [AdminController::class, 'kelolaPengguna'])->name('pengguna');
-    Route::post('/kelola-pengguna', [AdminController::class, 'storeUser'])->name('pengguna.store');
-    Route::get('/lihat-transaksi', [AdminController::class, 'lihatTransaksi'])->name('transaksi');
-    Route::get('/admin/status-pemesanan', [AdminController::class, 'statusPemesanan'])->name('admin.status-pemesanan');
+// RUTE  UNTUK ADMIN
+Route::get('kelola-pengguna', [AdminController::class, 'kelolaPengguna'])->name('kelola-pengguna');
+Route::get('lihat-transaksi', [AdminController::class, 'lihatTransaksi'])->name('lihat-transaksi');
+Route::get('/status-pemesanan', [AdminController::class, 'statusPemesanan'])->name('status-pemesanan');
+Route::get('/customer-dashboard', [PelangganController::class, 'customerDashboard'])->name('dashboard.customer');
+Route::get('/order/{id}/track', [OrderController::class, 'track'])->name('order.track');
+Route::get('/pembayaran/laundry/{id}', [App\Http\Controllers\OrderController::class, 'pembayaran'])->name('laundry.pembayaran');
+Route::get('/admin/transaksi/{id}', [OrderController::class, 'show'])->name('admin.transaksi.show');
+Route::patch('/admin/transaksi/{id}/update-status', [OrderController::class, 'updateStatus'])->name('admin.transaksi.updateStatus');
+Route::post('/admin/user', [userController::class, 'store'])->name('user.store');
+Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
+    Route::get('/laporan', [AdminController::class, 'laporan'])->name('laporan');
 });
