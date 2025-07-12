@@ -3,19 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\Pelanggan;
+use App\Models\Paket;
 
 class LaundryController extends Controller
 {
-    public function create()
+    public function index()
     {
-        return view('dashboard.order'); // Pastikan file order.blade.php ada
-    }
-
-    public function store(Request $request)
-    {
-        // Simpan data laundry ke database (contoh sederhana)
-        // Validasi dan logika penyimpanan bisa kamu tambahkan sesuai kebutuhan
-
-        return redirect()->route('dashboard')->with('success', 'Pesanan laundry berhasil dikirim.');
+        
     }
 }
