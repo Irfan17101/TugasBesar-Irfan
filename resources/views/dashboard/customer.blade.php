@@ -14,7 +14,7 @@
 
             {{-- Kartu 1: Daftar Pelanggan Baru --}}
             <div class="col-md-6 col-lg-5">
-                <a href="{{ route('pelanggan.create') }}" class="action-card card-daftar h-100">
+                <a href="" class="action-card card-daftar h-100">
                     <div class="card-icon">
                         <i class="fas fa-user-plus fa-3x"></i>
                     </div>
