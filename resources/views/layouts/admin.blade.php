@@ -134,26 +134,29 @@
             <img src="{{ asset('template/img/logo.jpg') }}" alt="Laundrapp Logo">
         </div>
         <p>Selamat Datang, <br><strong>Admin</strong></p>
-        <a href="{{ route('admin.dashboard') }}" 
-   class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+        <a href="/dashboard" 
+            class="nav-link">
+            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
         </a>
 
-        <a href="{{ route('admin.pengguna') }}" 
-        class="nav-link {{ request()->routeIs('admin.pengguna') ? 'active' : '' }}">
+        <a href="{{ route('kelola-pengguna') }}" 
+        class="nav-link">
             <i class="fas fa-users me-2"></i> Kelola Pengguna
         </a>
 
-        <a href="{{ route('admin.transaksi') }}" 
-        class="nav-link {{ request()->routeIs('admin.transaksi') ? 'active' : '' }}">
+        <a href="{{ route('lihat-transaksi') }}" 
+        class="nav-link">
             <i class="fas fa-file-invoice-dollar me-2"></i> Lihat Transaksi
         </a>
 
-        <a href="/admin/status-pemesanan" 
-        class="nav-link {{ request()->is('admin/status-pemesanan') ? 'active' : '' }}">
+        <a href="{{ route('status-pemesanan') }}" 
+        class="nav-link {{ request()->is('Admin/status-pemesanan') ? 'active' : '' }}">
             <i class="fas fa-shipping-fast me-2"></i> Status Pemesanan
         </a>
-            </a> 
+        <a href="{{ route('admin.laporan') }}" 
+        class="nav-link {{ request()->is('admin/laporan') ? 'active' : '' }}">
+         <i class="fas fa-file-alt me-2"></i> Laporan
+        </a>                             
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="btn btn-danger mt-3 w-100">Logout</button>
