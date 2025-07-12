@@ -26,7 +26,7 @@
             flex-direction: column;
         }
 
-        /* ===== Sidebar Styles ===== */
+       
         .sidebar {
             width: 250px;
             background: #33AADD;
@@ -134,10 +134,21 @@
             <img src="{{ asset('template/img/logo.jpg') }}" alt="Laundrapp Logo">
         </div>
         <p>Selamat Datang, <br><strong>Pelanggan</strong></p>
-        <a href="/dashboard"><i class="fa fa-home"></i> <span>Dashboard</span></a>
-        <a href="/pelanggan/create"><i class="fa fa-edit"></i> <span>Daftar Baru</span></a>
-        <a href="/pesan-laundry"><i class="fa fa-save"></i> <span>Pesan Laundry</span></a>
-        <a href="{{ route('order.lacak-form') }}"><i class="fa fa-search"></i> <span>Lacak Pesanan</span></a>
+        {{-- Dashboard --}}
+    <a href="{{ route('dashboard.customer') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a>
+
+    {{-- Pesan Laundry --}}
+    <a href="{{ route('laundry.pesan') }}"><i class="fa fa-edit"></i> <span>Pesan Laundry</span></a>
+
+    {{-- Lacak Pesanan --}}
+    <a href="{{ route('laundry.lacak') }}"><i class="fa fa-search"></i> <span>Lacak Pesanan</span></a>
+
+    <a href="{{ route('laundry.lacak') }}">
+        <i class="fas fa-search-location me-2"></i> Lacak Pesanan
+    </a>
+
+
+ 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="btn btn-danger mt-3 w-100">Logout</button>
@@ -177,6 +188,9 @@
         $('#sidebar').toggleClass('collapsed');
         $('#mainContent').toggleClass('shifted');
     });
+
+    
 </script>
+@stack('scripts')
 </body>
 </html>
