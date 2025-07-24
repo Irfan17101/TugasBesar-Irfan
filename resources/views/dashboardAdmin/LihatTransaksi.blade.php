@@ -43,7 +43,7 @@
                                     </td>
                                     <td>{{ $transaksi->created_at->format('d/m/Y H:i') }}</td>
                                     <td>
-                                        <a href="{{ route('admin.transaksi.show', $transaksi->id) }}" class="btn btn-sm btn-info" title="Lihat Detail">
+                                        <a href="{{ route('admin.transaksi.track', $transaksi->id) }}" class="btn btn-sm btn-info" title="Lihat Detail">
                                             <i class="fas fa-eye"></i>
                                         </a>                                        
                                         </a>

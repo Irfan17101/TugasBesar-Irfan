@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('template/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -134,29 +134,26 @@
             <img src="{{ asset('template/img/logo.jpg') }}" alt="Laundrapp Logo">
         </div>
         <p>Selamat Datang, <br><strong>Admin</strong></p>
-        <a href="/dashboard" 
-            class="nav-link">
-            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
-        </a>
-
-        <a href="{{ route('kelola-pengguna') }}" 
-        class="nav-link">
+        <a href="{{ route('admin.kelola-pengguna') }}"
+        class="nav-link {{ request()->is('admin/kelola-pengguna') ? 'active' : '' }}">
             <i class="fas fa-users me-2"></i> Kelola Pengguna
         </a>
 
-        <a href="{{ route('lihat-transaksi') }}" 
-        class="nav-link">
+        <a href="{{ route('admin.lihat-transaksi') }}"
+        class="nav-link {{ request()->is('admin/lihat-transaksi') ? 'active' : '' }}">
             <i class="fas fa-file-invoice-dollar me-2"></i> Lihat Transaksi
         </a>
 
-        <a href="{{ route('status-pemesanan') }}" 
-        class="nav-link {{ request()->is('Admin/status-pemesanan') ? 'active' : '' }}">
+        <a href="{{ route('admin.status-pemesanan') }}"
+        class="nav-link {{ request()->is('admin/status-pemesanan') ? 'active' : '' }}">
             <i class="fas fa-shipping-fast me-2"></i> Status Pemesanan
         </a>
-        <a href="{{ route('admin.laporan') }}" 
+
+        <a href="{{ route('admin.laporan') }}"
         class="nav-link {{ request()->is('admin/laporan') ? 'active' : '' }}">
-         <i class="fas fa-file-alt me-2"></i> Laporan
-        </a>                             
+            <i class="fas fa-file-alt me-2"></i> Laporan
+        </a>
+ 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="btn btn-danger mt-3 w-100">Logout</button>
@@ -188,15 +185,17 @@
     </div>
 </div>
 
-{{-- JS --}}
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Toggle sidebar
     $('#toggleSidebar').on('click', function () {
         $('#sidebar').toggleClass('collapsed');
         $('#mainContent').toggleClass('shifted');
     });
-</script>
+    </script>
+    @stack('scripts')
 </body>
 </html>

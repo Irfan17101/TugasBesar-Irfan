@@ -135,20 +135,19 @@
         </div>
         <p>Selamat Datang, <br><strong>Pelanggan</strong></p>
         {{-- Dashboard --}}
-    <a href="{{ route('dashboard.customer') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a>
-
-    {{-- Pesan Laundry --}}
-    <a href="{{ route('laundry.pesan') }}"><i class="fa fa-edit"></i> <span>Pesan Laundry</span></a>
-
-    {{-- Lacak Pesanan --}}
-    <a href="{{ route('laundry.lacak') }}"><i class="fa fa-search"></i> <span>Lacak Pesanan</span></a>
-
-    <a href="{{ route('laundry.lacak') }}">
-        <i class="fas fa-search-location me-2"></i> Lacak Pesanan
-    </a>
-
-
- 
+        <a href="{{ route('dashboard') }}" class="dropdown-item">
+            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+        </a>
+        
+        {{-- Pesan Laundry --}}
+        <a href="{{ route('laundry.pesan') }}" class="dropdown-item">
+            <i class="fas fa-plus-circle me-2"></i> Pesan Laundry
+        </a>
+        
+        {{-- Lacak Pesanan --}}
+        <a href="{{ route('laundry.lacak') }}" class="dropdown-item">
+            <i class="fas fa-search-location me-2"></i> Lacak Pesanan
+        </a>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="btn btn-danger mt-3 w-100">Logout</button>

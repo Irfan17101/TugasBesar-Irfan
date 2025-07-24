@@ -68,12 +68,12 @@
                                     <a href="{{ route('payment.create', ['order' => $order->id]) }}" class="btn btn-success">
                                         <i class="fas fa-money-bill-wave me-2"></i>Bayar Sekarang
                                     </a>
-                                @else
+                                    @else
                                     {{-- Jika status BUKAN pending, tampilkan tombol Lacak Status --}}
-                                    <a href="{{ route('order.track', ['id' => $order->id]) }}" class="btn btn-outline-primary">
+                                    <a href="{{ route('laundry.lacak') }}" class="btn btn-outline-primary">
                                         <i class="fas fa-search-location me-2"></i>Lacak Status
                                     </a>
-                                @endif
+                                    @endif
                                 {{-- ======================================================= --}}
 
                             </div>

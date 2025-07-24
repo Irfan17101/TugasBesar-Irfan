@@ -46,7 +46,7 @@ class OrderController extends Controller
 
         try {
             Order::create([
-                'user_id' => Auth::id(),
+                'user_id' => auth()->id(),
                 'service_name' => $service_name,
                 'type' => $request->type,
                 'weight' => $weight,

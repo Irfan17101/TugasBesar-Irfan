@@ -1,15 +1,30 @@
 <?php
 
-protected $routeMiddleware = [
-    'auth' => \App\Http\Middleware\Authenticate::class,
-    'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-    'role' => \App\Http\Middleware\RoleMiddleware::class,
-    'admin' => \App\Http\Middleware\RoleMiddleware::class, // alias admin
-];
+namespace App\Http;
 
-protected $routeMiddleware = [
-    'auth' => \App\Http\Middleware\Authenticate::class,
-    'admin' => \App\Http\Middleware\AdminMiddleware::class, // ← Tambahkan ini
-];
+use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
-
+class Kernel extends HttpKernel
+{
+   /**
+     * The application's middleware aliases.
+     *
+     * Aliases may be used to conveniently assign middleware to routes and groups.
+     *
+     * @var array<string, class-string|string>
+     */
+    protected $middlewareAliases = [
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'precognitive' => \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
+        'signed' => \App\Http\Middleware\ValidateSignature::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        
+        // ✅ ADMIN MIDDLEWARE - Pastikan path ini benar
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+    ];
+}

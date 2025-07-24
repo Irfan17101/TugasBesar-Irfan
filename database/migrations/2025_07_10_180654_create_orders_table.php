@@ -15,11 +15,12 @@ return new class extends Migration
             $table->string('service_name'); 
             $table->decimal('weight', 8, 2)->nullable(); 
             $table->integer('total_price')->default(0);
-            $table->date('pickup_date');
+            $table->date('pickup_date')->nullable();
             $table->string('pickup_time');
             $table->text('address');
             $table->text('notes')->nullable();
             $table->string('status')->default('pending');
+            $table->string('snap_token')->nullable()->after('status');
 
             // ===================================================
             // INI ADALAH KOLOM YANG HILANG

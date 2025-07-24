@@ -66,7 +66,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
-            <form action="{{ route('user.store') }}" method="POST">
+            <form action="{{ route('admin.user.store') }}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title">Tambah Pengguna Baru</h5>

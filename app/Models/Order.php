@@ -32,6 +32,14 @@ class Order extends Model
         'weight' => 'decimal:2',
     ];
 
+    protected $fillable = [
+        'user_id', // <-- PASTIKAN INI ADA
+        'status',
+        'total_price',
+        'service_name',
+        // ... semua kolom lain yang Anda isi melalui form
+    ];
+
     /**
      * Mendefinisikan relasi: satu Order dimiliki oleh satu User.
      */

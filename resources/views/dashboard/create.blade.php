@@ -6,9 +6,7 @@
 <div class="container">
     <h3 class="mb-4">Buat Pesanan Laundry Baru</h3>
 
-    {{-- ==================================================================== --}}
-    {{-- BAGIAN PENTING: Untuk Menampilkan Pesan Error dari Validasi --}}
-    {{-- ==================================================================== --}}
+   
     @if ($errors->any())
         <div class="alert alert-danger">
             <h5 class="alert-heading">Terjadi Kesalahan!</h5>
@@ -83,9 +81,9 @@
                         <h5 class="card-title mb-0">2. Jadwal & Alamat Penjemputan</h5>
                     </div>
                     <div class="card-body">
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label for="customer_name" class="form-label">Nama Pelanggan</label>
-                            <input type="text" class="form-control" id="customer_name" name="customer_name" value="{{ auth()->user()->name ?? '' }}" readonly>
+                            <input type="text" class="form-control" id="customer_name" name="customer_name" value="{{ old('customer_name', auth()->user()->name ?? '') }}">
                         </div>
                         <hr>
                         <div class="row">

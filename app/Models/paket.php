@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Paket extends Model
+class paket extends Model
 {
     protected $guarded = [];
 }

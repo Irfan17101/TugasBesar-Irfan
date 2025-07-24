@@ -55,7 +55,11 @@
             </div>
         </div>
     </div>
+    <script src="..."></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+        @stack('scripts')   
 
     {{-- Logout Section --}}
     <div class="row mt-5">
